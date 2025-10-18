@@ -22,6 +22,7 @@ export default function Home() {
   const [content, setContent] = useState("");
   const [isOnline, setIsOnline] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   // Load notes from IndexedDB
   const loadNotes = async () => {
@@ -35,6 +36,7 @@ export default function Home() {
 
   // Handle online/offline status
   useEffect(() => {
+    setMounted(true);
     setIsOnline(navigator.onLine);
 
     const handleOnline = () => setIsOnline(true);
@@ -50,6 +52,18 @@ export default function Home() {
       window.removeEventListener("offline", handleOffline);
     };
   }, []);
+
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 p-4 sm:p-8 flex items-center justify-center">
+        <div className="text-center">
+          <Database className="w-16 h-16 mx-auto mb-4 animate-pulse" />
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   // Add a new note
   const handleAddNote = async () => {
