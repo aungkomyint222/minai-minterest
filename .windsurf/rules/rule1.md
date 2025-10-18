@@ -1,6 +1,5 @@
 ---
 trigger: manual
-glob:
-description:
 ---
 
+Do not do summeery of change docs 

@@ -18,6 +18,7 @@ export default withPWA({
   workboxOptions: {
     disableDevLogs: true,
     skipWaiting: true,
+    clientsClaim: true,
     runtimeCaching: [
       {
         urlPattern: /^https?.*/,
@@ -27,6 +28,7 @@ export default withPWA({
           expiration: {
             maxEntries: 200,
           },
+          networkTimeoutSeconds: 10,
         },
       },
     ],
