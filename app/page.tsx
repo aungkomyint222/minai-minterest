@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { addNote, getAllNotes, deleteNote, clearAllNotes } from "@/lib/indexeddb";
 import { Trash2, Database, Wifi, WifiOff } from "lucide-react";
+import InstallPrompt from "@/components/InstallPrompt";
 
 interface Note {
   id: number;
@@ -123,6 +124,7 @@ export default function Home() {
             </Badge>
             <Badge variant="outline">PWA Enabled</Badge>
             <Badge variant="outline">IndexedDB Active</Badge>
+            <InstallPrompt />
           </div>
         </div>
 
